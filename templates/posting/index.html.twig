@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posting index{% endblock %}
+
+{% block body %}
+    <section class="container py-2">
+        <div class="row">
+            <div class="col">
+             <h2 class="text-center">Posting index</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Executed_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for posting in postings %}
+            <tr>
+                <td>{{ posting.id }}</td>
+                <td>{{ posting.title }}</td>
+                <td>{{ posting.description }}</td>
+                <td><img src="{{asset('assets/images/' ~ posting.image)}}" alt=""></td>
+                <td>{{ posting.executedAt ? posting.executedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_posting_show', {'id': posting.id}) }}">show</a>
+                    <a href="{{ path('app_posting_edit', {'id': posting.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_posting_new') }}">Create new</a>
+            </div>
+        </div>
+    </section>
+   
+{% endblock %}

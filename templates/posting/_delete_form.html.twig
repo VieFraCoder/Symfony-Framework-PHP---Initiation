@@ -1,0 +1,11 @@
+<section class="container">
+    <div class="row">
+        <div class="col">
+        <form method="post" action="{{ path('app_posting_delete', {'id': posting.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ posting.id) }}">
+    <button class="btn">Delete</button>
+</form>
+        </div>
+    </div>
+</section>
+
